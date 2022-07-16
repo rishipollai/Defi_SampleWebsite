@@ -1,14 +1,31 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
 const Navbar = () => {
+
+    const [color,setColor] = useState('transparent')
+    const [textColor,setTextColor]= useState('white')
     const [nav, setNav] = useState(false)
     const handleNav = () => {
         setNav(!nav)
     }
 
+    
+    useEffect(()=>{
+      const changeColor = ()=>{
+          if(window.scrollY>=90){
+              setColor('#ffffff');
+              setTextColor('#000000');
+          }else{
+              setColor('transparent');
+              setTextColor('#ffffff');
+          }
+      }
+      window.addEventListener('scroll',changeColor);
+  },[]);
+
   return (
-    <div className='w-full h-[90px] bg-black'>
+    <div className='fixed w-full h-[90px] bg-black ease-in duration-300'>
       <div className='max-w-[1240px] mx-auto px-4 flex justify-between items-center h-full'>
         <div>
           <h1 className='text-[#00d8ff]'>DEFI</h1>
